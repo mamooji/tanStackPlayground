@@ -30,14 +30,17 @@ function Home() {
   const state = Route.useLoaderData();
 
   return (
-    <button
-      onClick={() => {
-        updateCount(1).then(() => {
-          router.invalidate();
-        });
-      }}
-    >
-      Add 1 to {state}?
-    </button>
+    <>
+      Hello World
+      <button
+        onClick={() => {
+          updateCount(1).then(() => {
+            router.invalidate();
+          });
+        }}
+      >
+        Add 1 to {state}?
+      </button>
+    </>
   );
 }
