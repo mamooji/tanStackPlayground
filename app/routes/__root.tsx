@@ -1,4 +1,5 @@
 // app/routes/__root.tsx
+import { ClerkProvider } from "@clerk/tanstack-start";
 import { createRootRoute } from "@tanstack/react-router";
 import { Outlet, ScrollRestoration } from "@tanstack/react-router";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
@@ -30,15 +31,17 @@ function RootComponent() {
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
-    <Html>
-      <Head>
-        <Meta />
-      </Head>
-      <Body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
-      </Body>
-    </Html>
+    <ClerkProvider>
+      <Html>
+        <Head>
+          <Meta />
+        </Head>
+        <Body>
+          {children}
+          <ScrollRestoration />
+          <Scripts />
+        </Body>
+      </Html>
+    </ClerkProvider>
   );
 }

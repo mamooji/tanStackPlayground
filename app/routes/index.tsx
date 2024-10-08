@@ -2,6 +2,14 @@
 import * as fs from "fs";
 import { createFileRoute, useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/start";
+import {
+  SignedIn,
+  UserButton,
+  SignOutButton,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+} from "@clerk/tanstack-start";
 
 const filePath = "count.txt";
 
@@ -32,15 +40,24 @@ function Home() {
   return (
     <>
       Hello World
-      <button
-        onClick={() => {
-          updateCount(1).then(() => {
-            router.invalidate();
-          });
-        }}
-      >
-        Add 1 to {state}?
-      </button>
+      <SignedIn>
+        <p>You are signed In</p>
+        <UserButton />
+        <SignOutButton />
+        <button
+          onClick={() => {
+            updateCount(1).then(() => {
+              router.invalidate();
+            });
+          }}
+        >
+          Add 1 to {state}?
+        </button>
+      </SignedIn>
+      <SignedOut>
+        <SignInButton />
+        <SignUpButton />
+      </SignedOut>
     </>
   );
 }

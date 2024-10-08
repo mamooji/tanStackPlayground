@@ -5,10 +5,12 @@ import {
   defaultStreamHandler,
 } from "@tanstack/start/server";
 import { getRouterManifest } from "@tanstack/start/router-manifest";
-
+import { createClerkHandler } from "@clerk/tanstack-start/server";
 import { createRouter } from "./router";
 
-export default createStartHandler({
-  createRouter,
-  getRouterManifest,
-})(defaultStreamHandler);
+export default createClerkHandler(
+  createStartHandler({
+    createRouter,
+    getRouterManifest,
+  })
+)(defaultStreamHandler);
